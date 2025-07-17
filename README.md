@@ -42,6 +42,28 @@ In `app.py`, replace the API key if needed:
 API_KEY = 'your_api_key_here'
 ```
 
+## 📦 Data & Pickle Files
+
+This project requires the following `.pkl` files which are not included in the repo:
+- `movies_df.pkl`
+- `similarity.pkl`
+
+You can generate them yourself by:
+1. Downloading the dataset from Kaggle:  
+   🔗 [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata)
+
+2. Running `Movie_Recommendation_Sysem.ipynb` to:
+   - Clean and merge the datasets
+   - Create the feature vectors
+   - Export files using:
+
+```python
+import pickle
+
+pickle.dump(movies_df, open('movies_df.pkl', 'wb'))
+pickle.dump(similarity, open('similarity.pkl', 'wb'))
+```
+
 ## ▶️ Run the App
 
 To run the app on your system:
