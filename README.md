@@ -16,6 +16,7 @@ A simple content-based movie recommendation system using machine learning and St
 - `movies_df.pkl` – Preprocessed movie dataset
 - `similarity.pkl` – Cosine similarity matrix for recommendations
 - `tmdb_5000_movies.csv`, `tmdb_5000_credits.csv` – Original datasets from TMDB
+- `requirements.txt` - For required libraries
 
 ## 🧪 Demo
 
