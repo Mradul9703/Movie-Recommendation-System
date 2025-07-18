@@ -70,7 +70,6 @@ def recommend(movie):
 
 
 # Streamlit app
-st.title("Movie Recommendation System 🎬")
 st.markdown("## Movie Recommendation System 🎬")
 selected_movie = st.selectbox("Select a movie", movies['title'].values)
 
