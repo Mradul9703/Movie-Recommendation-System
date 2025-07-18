@@ -2,6 +2,11 @@
 
 A simple content-based movie recommendation system using machine learning and Streamlit. Enter any movie name and get 5 similar movie suggestions with posters!
 
+## 🧪 Demo
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://movie-recommendation-system-by-mradul.streamlit.app/)
+> The UI shows 5 recommended movies with poster images.
+
 ## 🚀 Features
 
 - Content-based filtering using cosine similarity
@@ -17,11 +22,6 @@ A simple content-based movie recommendation system using machine learning and St
 - `similarity.pkl` – Cosine similarity matrix for recommendations
 - `tmdb_5000_movies.csv`, `tmdb_5000_credits.csv` – Original datasets from TMDB
 - `requirements.txt` - For required libraries
-
-## 🧪 Demo
-
-![Demo Screenshot](demo.png)  
-> The UI shows 5 recommended movies with poster images.
 
 ## 🛠 Tech Stack
 
