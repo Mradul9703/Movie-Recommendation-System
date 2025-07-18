@@ -70,7 +70,8 @@ def recommend(movie):
 
 
 # Streamlit app
-st.title("Movie Recommendation System")
+st.title("Movie Recommendation System 🎬")
+st.markdown("## Movie Recommendation System 🎬")
 selected_movie = st.selectbox("Select a movie", movies['title'].values)
 
 if st.button("Recommend movies"):
@@ -78,6 +79,8 @@ if st.button("Recommend movies"):
     with st.spinner("Loading..."):
         names, posters = recommend(selected_movie)
 
+    st.markdown("### Top 5 Recommendations:")
+    
     cols = st.columns(5)
     for i in range(5):
         with cols[i]:
