@@ -4,8 +4,22 @@ import pickle
 import requests
 import time
 import concurrent.futures
+import gdown
+import os
 
 # Load data
+
+movies_fileID = '1U4SwudE2wuWXOR6ZYLbF6nhS4ryIO5Dl'
+similarity_fileID = '1oJYlIlFAe8_ciUSG47xD9hcpclTfB9bH'
+
+movies_url = f'https://drive.google.com/uc?id={movies_fileID}'
+similarity_url = f'https://drive.google.com/uc?id={similarity_fileID}'
+
+if not os.path.exists('movies_df.pkl'):
+    gdown.download(movies_url, 'movies_df.pkl')
+if not os.path.exists('similarity.pkl'):
+    gdown.download(similarity_url, 'similarity.pkl')
+
 movies = pickle.load(open('movies_df.pkl', 'rb'))
 similarity = pickle.load(open('similarity.pkl', 'rb'))
 
@@ -13,11 +27,11 @@ similarity = pickle.load(open('similarity.pkl', 'rb'))
 API_KEY = 'b1f80b889ebb3da66f215768dea0838b'
 
 
-def fetch_poster(movie_id, retries=5):
+def fetch_poster(movie_id, retries=7):
     url = f'https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}'
     for attempt in range(retries):
         try:
-            response = requests.get(url, timeout=5)
+            response = requests.get(url, timeout=2)
             response.raise_for_status()
             data = response.json()
             poster_path = data.get('poster_path')
@@ -26,7 +40,7 @@ def fetch_poster(movie_id, retries=5):
             else:
                 return 'https://via.placeholder.com/300x450?text=No+Image'
         except Exception as e:
-            time.sleep(1)  # short delay before retry
+            time.sleep(0.5)  # short delay before retry
     # After retries, return placeholder
     return 'https://via.placeholder.com/300x450?text=Error'
 
@@ -62,14 +76,10 @@ selected_movie = st.selectbox("Select a movie", movies['title'].values)
 
 if st.button("Recommend movies"):
 
-    st.toast("Please wait...", icon="⏳")
-    names, posters = recommend(selected_movie)
+    with st.spinner("Loading..."):
+        names, posters = recommend(selected_movie)
 
-    if names:
-        cols = st.columns(5)
-        for i in range(5):
-            with cols[i]:
-                st.image(posters[i])
-                st.caption(names[i])
-    else:
-        st.warning("Could not generate recommendations.")
+    cols = st.columns(5)
+    for i in range(5):
+        with cols[i]:
+            st.image(posters[i],caption = names[i])
